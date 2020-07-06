@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,13 +10,17 @@ export class HomeComponent implements OnInit {
 
   isRegister = false;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
 
-  registerToggle(){
-    this.isRegister = !this.isRegister;
+  registerToggle() {
+    this.isRegister = true;
+  }
+
+  cancelRegisterMode(mode: boolean) {
+    this.isRegister = mode;
   }
 
 }
