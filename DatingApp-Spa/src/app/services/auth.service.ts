@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-  baseUrl = 'http://localhost:5000/api/auth/';
+baseUrl = 'http://localhost:5000/api/auth/';
 
 constructor(private http: HttpClient) { }
 
@@ -20,7 +20,7 @@ login(model: any) {
         localStorage.setItem('token', user.token);
       }
     })
-  )
+  );
 }
 
 }
