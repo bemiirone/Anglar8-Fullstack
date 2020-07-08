@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { User } from './'
 import { AuthService } from './services/auth.service';
 
 @Component({
