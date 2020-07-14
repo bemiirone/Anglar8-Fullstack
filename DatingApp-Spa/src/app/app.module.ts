@@ -8,16 +8,22 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { RouterModule } from '@angular/router';
+import { JwtModule } from '@auth0/angular-jwt';
 
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { MemberListComponent } from './member-list/member-list.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 
+export function tokenGetter() {
+   return localStorage.getItem('token');
+}
 @NgModule({
    declarations: [
       AppComponent,
@@ -26,7 +32,9 @@ import { MessagesComponent } from './messages/messages.component';
       RegisterComponent,
       MemberListComponent,
       ListsComponent,
-      MessagesComponent
+      MessagesComponent,
+      MemberCardComponent,
+      MemberDetailComponent
    ],
    imports: [
       BrowserModule,
@@ -34,7 +42,14 @@ import { MessagesComponent } from './messages/messages.component';
       FormsModule,
       BrowserAnimationsModule,
       BsDropdownModule.forRoot(),
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot(appRoutes),
+      JwtModule.forRoot({
+         config: {
+           tokenGetter: tokenGetter,
+           allowedDomains: ['localhost:5000'],
+           disallowedRoutes: ['localhost:5000/api/auth']
+         }
+       })
    ],
    providers: [
       AuthService,
