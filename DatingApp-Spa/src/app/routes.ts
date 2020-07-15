@@ -1,3 +1,5 @@
+import { MemberListResolver } from './resolvers/member-list-resolver';
+import { MemberDetailResolver } from './resolvers/member-detail.resolver';
 import { AuthGuard } from './guards/auth.guard';
 import { MessagesComponent } from './messages/messages.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
@@ -14,8 +16,8 @@ export const appRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'list', component: ListsComponent },
-      { path: 'members', component: MemberListComponent },
-      { path: 'members/:id', component: MemberDetailComponent },
+      { path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}  },
+      { path: 'members/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver} },
       { path: 'messages', component: MessagesComponent },
     ],
   },
