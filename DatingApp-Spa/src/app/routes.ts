@@ -1,3 +1,4 @@
+import { ListsResolver } from './resolvers/lists.resolver';
 import { PreventUnsavedGuard } from './guards/prevent-unsaved.guard';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberListResolver } from './resolvers/member-list-resolver';
@@ -18,7 +19,11 @@ export const appRoutes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'list', component: ListsComponent },
+      {
+        path: 'list',
+        component: ListsComponent,
+        resolve: { users: ListsResolver },
+      },
       {
         path: 'members',
         component: MemberListComponent,

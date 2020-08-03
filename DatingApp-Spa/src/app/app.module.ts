@@ -1,3 +1,4 @@
+import { ListsResolver } from './resolvers/lists.resolver';
 import { AuthGuard } from './guards/auth.guard';
 import { PreventUnsavedGuard } from './guards/prevent-unsaved.guard';
 import { MemberEditResolver } from './resolvers/member-edit.resolver';
@@ -88,6 +89,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberDetailResolver,
       MemberListResolver,
       MemberEditResolver,
+      ListsResolver,
       AuthGuard,
       PreventUnsavedGuard,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
